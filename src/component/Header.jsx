@@ -31,9 +31,9 @@ export default function Header() {
                 <EuiHeaderSectionItemButton>
                     <EuiFlexGroup alignItems='center' gutterSize='m'>
                         <EuiAvatar name="John Username" imageUrl='/assets/avata.png' size="l" />
-                        <EuiText>
-                            <b>Lê chí tuyền</b>
-                            <p style={{fontSize:'14px'}}>Học sinh</p>
+                        <EuiText textAlign='left' size='s'>
+                            <strong>Lê chí tuyền</strong>
+                            <p>Học sinh</p>
                         </EuiText>
                         <EuiIcon type='arrowDown' style={{padding:'4px',border:'1px solid',borderRadius:'50%'}}/>
                     </EuiFlexGroup>
