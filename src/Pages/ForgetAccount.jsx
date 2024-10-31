@@ -12,7 +12,10 @@ export default function ForgetAccount() {
             title,
             color,
             iconType: color === 'success' ? 'check' : 'warning',
-            text: <p>{text}</p>,
+            text: <>
+                <p>{text}</p>
+                <EuiButton>Button</EuiButton>
+            </>,
         };
         setToasts([...toasts, newToast]);
     };
@@ -20,7 +23,7 @@ export default function ForgetAccount() {
         setToasts(toasts.filter(toast => toast.id === id));
     };
     const handleConfirmSuccess = () => {
-        addToast("Xác nhận thành công", "success", "Mã xác nhận đã được gửi thành công!");
+        addToast("Xác nhận thành công", "success", "Xác thực thành công!");
     };
 
     const handleConfirmFailure = () => {
