@@ -4,6 +4,7 @@ import Episode from "./Pages/Episode";
 import Profile from "./Pages/Profile";
 import Register from "./Pages/Register";
 import ForgetAccount from "./Pages/ForgetAccount";
+import StudyRecord from "./Pages/StudyRecord";
 function App() {
   return (
     <BrowserRouter>
@@ -12,7 +13,8 @@ function App() {
         <Route path="/register" element={<Register/>}/>
         <Route path="/ForgetAccount" element={<ForgetAccount/>}/>
         <Route path="/episode" element={<Episode/>}/>
-        <Route path="/" element={<Profile/>}/>
+        <Route path="/profile" element={<Profile/>}/>
+        <Route path="/" element={<StudyRecord/>}/>
       </Routes>
     </BrowserRouter>
   );
