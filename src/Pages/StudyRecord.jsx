@@ -1,4 +1,4 @@
-import { EuiAvatar, EuiBasicTable, EuiButton, EuiButtonEmpty, EuiButtonGroup, EuiButtonIcon, EuiFieldText, EuiFilterButton, EuiFilterGroup, EuiFlexGroup, EuiFlexItem, EuiFormLabel, EuiIcon, EuiPage, EuiPageBody, EuiPageSection, EuiPageTemplate, EuiPanel, EuiPopover, EuiPopoverFooter, EuiPopoverTitle, EuiText } from '@elastic/eui'
+import { EuiAvatar, EuiBasicTable, EuiButton, EuiButtonEmpty, EuiButtonGroup, EuiButtonIcon, EuiFieldText, EuiFilterButton, EuiFilterGroup, EuiFlexGroup, EuiFlexItem, EuiFormLabel, EuiIcon, EuiPage, EuiPageBody, EuiPageSection, EuiPageTemplate, EuiPanel, EuiPopover, EuiPopoverFooter, EuiPopoverTitle, EuiTable, EuiTableBody, EuiTableHeader, EuiTableHeaderCell, EuiTableRow, EuiTableRowCell, EuiText } from '@elastic/eui'
 import React, { useState } from 'react'
 import Header from '../component/Header'
 import Footer from '../component/Footer'
@@ -45,6 +45,24 @@ export default function StudyRecord() {
         pageSize: 5,
         totalItemCount: 10,
       };
+
+      const columns=[
+        {field:"STT",name:"STT"},
+        {field:"TMH",name:"Tên môn học"},
+        {field:"KTM",name:"KT Miệng"},
+        {field:"KT15",name:"KT 15'"},
+        {field:"KT45",name:"KT 45'"},
+        {field:"Thi",name:"Thi"},
+        {field:"Sum",name:"Tổng"},
+    ]
+    const items=[
+        {'STT':1,'TMH':'Toán','KTM':10,"KT15":10,"KT45":10,'Thi':10,'Sum':10},
+        {'STT':2,'TMH':'Vật lý','KTM':10,"KT15":'10',"KT45":10,'Thi':10,'Sum':10},
+        {'STT':3,'TMH':'Ngữ văn','KTM':10,"KT15":'10',"KT45":10,'Thi':10,'Sum':10},
+        {'STT':4,'TMH':'Hóa học','KTM':10,"KT15":'10',"KT45":10,'Thi':10,'Sum':10},
+        {'STT':5,'TMH':'Tiếng anh','KTM':10,"KT15":'10',"KT45":10,'Thi':10,'Sum':10}
+        ]
+
   return (
     <EuiPageTemplate>
         <Header/>
@@ -148,26 +166,88 @@ export default function StudyRecord() {
                             </EuiFlexGroup>
                         </EuiFlexItem>
                         <EuiFlexItem style={{padding:'20px'}}>
-                            <EuiBasicTable
+                            <EuiTable>
+                                <EuiTableHeader>
+                                    {columns.map((column) => (
+                                        <EuiTableHeaderCell
+                                        key={column.field}
+                                        style={{
+                                            backgroundColor: '#f5f5f5',
+                                            padding:'1rem'
+                                        }}
+                                        >
+                                        {column.name}
+                                        </EuiTableHeaderCell>
+                                    ))}
+                                </EuiTableHeader>
+                                <EuiTableBody>
+                                    {items.map(item=>(
+                                        <EuiTableRow>
+                                            <EuiTableRowCell
+                                            style={{padding:'1rem'}}
+                                            mobileOptions={{
+                                                header:"STT",
+                                                
+                                            }}>{item.STT}</EuiTableRowCell>
+                                            <EuiTableRowCell
+                                            style={{padding:'1rem'}}
+                                            mobileOptions={{
+                                                header:"Tên môn học"
+                                            }}>{item.TMH}</EuiTableRowCell>
+                                            <EuiTableRowCell
+                                            style={{padding:'1rem'}}
+                                            mobileOptions={{
+                                                header:"Kiểm tra miệng"
+                                            }}>{item.KTM}</EuiTableRowCell>
+                                            <EuiTableRowCell
+                                            style={{padding:'1rem'}}
+                                            mobileOptions={{
+                                                header:"Kiểm tra 15'"
+                                            }}>{item.KT15}</EuiTableRowCell>
+                                            <EuiTableRowCell
+                                            style={{padding:'1rem'}}
+                                            mobileOptions={{
+                                                header:"Kiểm tra 45'"
+                                            }}>{item.KT45}</EuiTableRowCell>
+                                            <EuiTableRowCell
+                                            style={{padding:'1rem'}}
+                                            mobileOptions={{
+                                                header:"Thi"
+                                            }}>{item.Thi}</EuiTableRowCell>
+                                            <EuiTableRowCell
+                                            style={{padding:'1rem'}}
+                                            mobileOptions={{
+                                                header:"Tổng"
+                                            }}>{item.Sum}</EuiTableRowCell>
+                                        </EuiTableRow>
+                                    ))}
+                                </EuiTableBody>
+                            </EuiTable>
+                            <EuiFlexGroup justifyContent='spaceBetween' alignItems='center' responsive={false} style={{padding:'1rem'}}>
+                                <EuiFlexItem grow={false}>
+                                    <EuiFlexGroup gutterSize='none' alignItems='center' style={{border:'1px solid gray',borderRadius:'1rem',background:''}}>
+                                        <EuiButtonIcon iconType='arrowLeft' color='text'/>
+                                        <EuiButtonEmpty color='text'>1</EuiButtonEmpty>
+                                        <EuiButtonEmpty color='text'>2</EuiButtonEmpty>
+                                        <EuiButtonEmpty color='text'>3</EuiButtonEmpty>
+                                        <EuiButtonEmpty color='text'>...</EuiButtonEmpty>
+                                        <EuiButtonEmpty color='text'>8</EuiButtonEmpty>
+                                        <EuiButtonEmpty color='text'>9</EuiButtonEmpty>
+                                        <EuiButtonIcon iconType='arrowRight' color='text'/>
+                                    </EuiFlexGroup>
+                                </EuiFlexItem>
+                                <EuiFlexItem grow={false}>
+                                    <EuiText>
+                                        <strong>Điểm tổng kết = 7.9</strong>
+                                    </EuiText>
+                                </EuiFlexItem>
+                            </EuiFlexGroup>
+                            {/* <EuiBasicTable
                                 rowHeader='STT'
                                 pagination={pagination}
                                 onChange={onTableChange}
-                                columns={[
-                                    {field:"STT",name:"STT"},
-                                    {field:"Tên môn học",name:"Tên môn học"},
-                                    {field:"KT Miệng",name:"KT Miệng"},
-                                    {field:"KT 15'",name:"KT 15'"},
-                                    {field:"KT 45'",name:"KT 45'"},
-                                    {field:"Thi",name:"Thi"},
-                                    {field:"Tổng",name:"Tổng"},
-                                ]}
-                                items={[
-                                    {'STT':1,'Tên môn học':'Toán','KT Miệng':10,"KT 15'":'10',"KT 45'":10,'Thi':10,'Tổng':10},
-                                    {'STT':2,'Tên môn học':'Vật lý','KT Miệng':10,"KT 15'":'10',"KT 45'":10,'Thi':10,'Tổng':10},
-                                    {'STT':3,'Tên môn học':'Ngữ văn','KT Miệng':10,"KT 15'":'10',"KT 45'":10,'Thi':10,'Tổng':10},
-                                    {'STT':4,'Tên môn học':'Hóa học','KT Miệng':10,"KT 15'":'10',"KT 45'":10,'Thi':10,'Tổng':10},
-                                    {'STT':5,'Tên môn học':'Tiếng anh','KT Miệng':10,"KT 15'":'10',"KT 45'":10,'Thi':10,'Tổng':10}
-                                    ]}/>
+                                columns={columns}
+                                items={items}/> */}
                         </EuiFlexItem>
                     </EuiFlexGroup>
                 </EuiPanel>
