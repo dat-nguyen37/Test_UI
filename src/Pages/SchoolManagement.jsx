@@ -1,4 +1,4 @@
-import { EuiButtonEmpty, EuiButtonIcon, EuiFieldSearch, EuiFieldText, EuiFlexGroup, EuiFlexItem, EuiImage, EuiPageBody, EuiPageSection, EuiPageTemplate, EuiPanel, EuiTable, EuiTableBody, EuiTableHeader, EuiTableHeaderCell, EuiTableRow, EuiTableRowCell, EuiText } from '@elastic/eui'
+import { EuiButtonEmpty, EuiButtonGroup, EuiButtonIcon, EuiFieldSearch, EuiFieldText, EuiFlexGroup, EuiFlexItem, EuiImage, EuiPageBody, EuiPageSection, EuiPageTemplate, EuiPanel, EuiTable, EuiTableBody, EuiTableHeader, EuiTableHeaderCell, EuiTableRow, EuiTableRowCell, EuiText } from '@elastic/eui'
 import React from 'react'
 import Headers from '../component/Header'
 import Footer from '../component/Footer'
@@ -101,8 +101,11 @@ const items=[
                                     mobileOptions={{
                                         header:"Thao tác"
                                     }}>
-                                      <EuiButtonIcon iconType='documentEdit' color='text'/>
-                                      <EuiButtonIcon iconType='trash' color='danger'/>
+                                      <EuiFlexGroup gutterSize='s' style={{border:'1px solid gray',borderRadius:'5px',background:'#f5f5f5'}}>
+                                        <EuiButtonIcon iconType='documentEdit' color='text'/>
+                                        <EuiFlexItem grow={false} style={{border:'1px solid gray'}}/>
+                                        <EuiButtonIcon iconType='trash' color='danger'/>
+                                      </EuiFlexGroup>
                                     </EuiTableRowCell>
                                 </EuiTableRow>
                             ))}
