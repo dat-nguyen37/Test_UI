@@ -68,7 +68,7 @@ export default function StudyRecord() {
         <Header/>
         <EuiPageBody>
             <EuiPageSection style={{marginBlock:'-20px'}}>
-                <EuiFlexGroup alignItems='center' gutterSize='m'>
+                <EuiFlexGroup alignItems='center' gutterSize='m' responsive={false}>
                     <EuiFlexItem grow={false}>
                         <EuiButtonIcon 
                         display='fill' 
