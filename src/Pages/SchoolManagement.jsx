@@ -1,8 +1,26 @@
-import { EuiButtonEmpty, EuiButtonGroup, EuiButtonIcon, EuiFieldSearch, EuiFieldText, EuiFlexGroup, EuiFlexItem, EuiImage, EuiPageBody, EuiPageSection, EuiPageTemplate, EuiPanel, EuiTable, EuiTableBody, EuiTableHeader, EuiTableHeaderCell, EuiTableRow, EuiTableRowCell, EuiText } from '@elastic/eui'
-import React from 'react'
+import { EuiButton, EuiButtonEmpty, EuiButtonGroup, EuiButtonIcon, EuiFieldSearch, EuiFieldText, EuiFlexGroup, EuiFlexItem, EuiFormControlLayout, EuiIcon, EuiImage, EuiPageBody, EuiPageSection, EuiPageTemplate, EuiPanel, EuiPopover, EuiPopoverFooter, EuiPopoverTitle, EuiTable, EuiTableBody, EuiTableHeader, EuiTableHeaderCell, EuiTableRow, EuiTableRowCell, EuiText } from '@elastic/eui'
+import React, { useState } from 'react'
 import Headers from '../component/Header'
 import Footer from '../component/Footer'
 export default function SchoolManagement() {
+  const [isPopoverCity,setIsPopoverCity]=useState(false)
+  const [isPopoverDistrict,setIsPopoverDistrict]=useState(false)
+  const [isPopoverSchool,setIsPopoverSchool]=useState(false)
+
+  const [selectedCity,setSelectedCity]=useState(null)
+  const [selectedDistrict,setSelectedDistrict]=useState(null)
+  const [selectedSchool,setSelectedSchool]=useState(null)
+
+  const OpenPopoverCity=()=>setIsPopoverCity(!isPopoverCity)
+  const ClosePopoverCity=()=>setIsPopoverCity(false)
+
+  const OpenPopoverDistrict=()=>setIsPopoverDistrict(!isPopoverDistrict)
+  const ClosePopoverDistrict=()=>setIsPopoverDistrict(false)
+
+  const OpenPopoverSchool=()=>setIsPopoverSchool(!isPopoverSchool)  
+  const ClosePopoverSchool=()=>setIsPopoverSchool(false)
+
+
   const columns=[
     {field:"Logo",name:"Logo"},
     {field:"NameSchool",name:"Tên trường học"},
@@ -21,6 +39,11 @@ const items=[
     {'Logo':'/assets/avata.png','NameSchool':'Trường THPT chuyên Hà Nội','Address':'Cầu giấy',"Gender":"Nữ","HeadMaster":"Trần Thùy Dươn",'Phone':"093743848"},
 
     ]
+  const cities=[
+    {name:'Hà Nội'},
+    {name:'TP.Hồ Chí Minh'},
+    {name:'Hải Phòng'},
+  ]
   return (
     <EuiPageTemplate>
         <Headers/>
@@ -41,8 +64,88 @@ const items=[
             <EuiPanel paddingSize='none'>
               <EuiFlexGroup direction='column' gutterSize='none'>
                 <EuiFlexItem style={{padding:'20px'}}>
-                  <EuiFlexGroup>
-                    <EuiFieldSearch placeholder='Tìm kiếm theo tên trường học...'/>
+                  <EuiFlexGroup justifyContent='spaceBetween'>
+                    <EuiFlexItem grow={4}>
+                      <EuiFieldSearch placeholder='Tìm kiếm theo tên trường học...' fullWidth/>
+                    </EuiFlexItem>
+                    <EuiFlexItem grow={10}>
+                      <EuiFlexGroup alignItems='center' gutterSize='none' style={{background:"#F5F5F5",border:'1px solid gray',borderRadius:'5px'}}>
+                        <EuiFlexItem grow={false} style={{paddingInline:'20px'}}><EuiIcon type="logstashFilter"/></EuiFlexItem>
+                        <EuiFlexItem grow={false} style={{height:'100%',border:'1px solid gray'}}/>
+                        <EuiFlexItem grow={false} style={{paddingInline:'20px'}}><EuiText size='s'><h5>Bộ lọc</h5></EuiText></EuiFlexItem>
+                        <EuiFlexItem grow={false} style={{height:'100%',border:'1px solid gray'}}/>
+                        <EuiFlexItem grow={false} style={{paddingInline:'20px'}}>
+                          <EuiPopover
+                          anchorPosition='downLeft'
+                          panelStyle={{outline:'none',marginTop:'20px'}}
+                          hasArrow={false}
+                          isOpen={isPopoverCity}
+                          closePopover={ClosePopoverCity}
+                          button={
+                            <EuiFlexGroup onClick={OpenPopoverCity}>
+                              <EuiText size='s'><h5>{selectedCity ?? 'Tỉnh/ Thành'}</h5></EuiText>
+                              <EuiIcon type="arrowDown" />
+                            </EuiFlexGroup>
+                          }>
+                            <EuiPopoverTitle>
+                              <EuiFieldSearch style={{outline:'none'}}/>
+                            </EuiPopoverTitle>
+                            <EuiFlexGroup direction='column'>
+                                {cities.map(city=>(
+                                  <EuiFlexItem>
+                                    <EuiFlexGroup justifyContent='spaceBetween' alignItems='center' onClick={()=>setSelectedCity(city.name)}>
+                                      <EuiFlexItem>
+                                        <EuiText>{city.name}</EuiText>
+                                      </EuiFlexItem>
+                                      {selectedCity === city.name &&
+                                        <EuiFlexItem grow={false}>
+                                          <EuiIcon type="check" size='l'/>
+                                        </EuiFlexItem>
+                                        
+                                      }
+                                      </EuiFlexGroup>
+                                  </EuiFlexItem>
+                                ))}
+                            </EuiFlexGroup>
+                            </EuiPopover>
+                        </EuiFlexItem>
+                        <EuiFlexItem grow={false} style={{height:'100%',border:'1px solid gray'}}/>
+                        <EuiFlexItem grow={false} style={{paddingInline:'20px'}}>
+                          <EuiPopover
+                          hasArrow={false}
+                          isOpen={isPopoverDistrict}
+                          closePopover={ClosePopoverDistrict}
+                          button={
+                            <EuiFlexGroup onClick={OpenPopoverDistrict}>
+                              <EuiText size='s'><h5>{selectedDistrict ?? 'Quận/ huyện'}</h5></EuiText>
+                              <EuiIcon type="arrowDown" />
+                            </EuiFlexGroup>
+                          }>
+                            </EuiPopover>
+                        </EuiFlexItem>
+                        <EuiFlexItem grow={false} style={{height:'100%',border:'1px solid gray'}}/>
+                        <EuiFlexItem grow={false} style={{paddingInline:'20px'}}>
+                          <EuiPopover
+                          hasArrow={false}
+                          isOpen={isPopoverSchool}
+                          closePopover={ClosePopoverSchool}
+                          button={
+                            <EuiFlexGroup onClick={OpenPopoverSchool}>
+                              <EuiText size='s'><h5>{selectedSchool ?? 'Tiểu học'}</h5></EuiText>
+                              <EuiIcon type="arrowDown" />
+                            </EuiFlexGroup>
+                          }>
+                            </EuiPopover>
+                        </EuiFlexItem>
+                        <EuiFlexItem grow={false} style={{height:'100%',border:'1px solid gray'}}/>
+                        <EuiFlexItem style={{paddingInline:'20px'}}>
+                          <EuiButtonEmpty iconType="editorUndo" color='danger'><EuiText color='danger' size='s'>Đặt lại</EuiText></EuiButtonEmpty>
+                        </EuiFlexItem>
+                      </EuiFlexGroup>
+                    </EuiFlexItem>
+                    <EuiFlexItem grow={false}>
+                      <EuiButtonEmpty color='ghost' style={{background:'#F5F5F5',width:'50px',fontSize:'32px'}}>+</EuiButtonEmpty>
+                    </EuiFlexItem>
                   </EuiFlexGroup>
                 </EuiFlexItem>
                 <EuiFlexItem>
