@@ -3,7 +3,7 @@ import React from 'react'
 
 export default function Header() {
   return (
-    <EuiHeader style={{height:'70px'}}>
+    <EuiHeader style={{width:'100%'}}>
         <EuiHeaderSection style={{gap:20}}>
             <EuiHeaderSectionItem>
                 <EuiHeaderLogo iconType="menu"/>
@@ -19,18 +19,18 @@ export default function Header() {
             <EuiFlexGroup gutterSize='s'>
             <EuiHeaderSectionItem>
                 <EuiHeaderSectionItemButton notification={'2'}>
-                    <EuiIcon type="editorComment" size='xl'/>
+                    <EuiIcon type="editorComment" size='l'/>
                 </EuiHeaderSectionItemButton>
             </EuiHeaderSectionItem>
             <EuiHeaderSectionItem>
                 <EuiHeaderSectionItemButton notification={'2'}>
-                    <EuiIcon type="bell" size='l'/>
+                    <EuiIcon type="bell" size='m'/>
                 </EuiHeaderSectionItemButton>
             </EuiHeaderSectionItem>
             <EuiHeaderSectionItem>
                 <EuiHeaderSectionItemButton>
                     <EuiFlexGroup alignItems='center' gutterSize='m'>
-                        <EuiAvatar name="John Username" imageUrl='/assets/avata.png' size="l" />
+                        <EuiAvatar name="John Username" imageUrl='/assets/avata.png' size="m" />
                         <EuiText textAlign='left' size='s'>
                             <strong>Lê chí tuyền</strong>
                             <p>Học sinh</p>

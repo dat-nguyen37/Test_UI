@@ -7,6 +7,7 @@ import ForgetAccount from "./Pages/ForgetAccount";
 import StudyRecord from "./Pages/StudyRecord";
 import SchoolManagement from "./Pages/SchoolManagement";
 import RecordStudy from "./Pages/RecordStudy";
+import Event from "./Pages/Event";
 function App() {
   return (
     <BrowserRouter>
@@ -18,7 +19,8 @@ function App() {
         <Route path="/profile" element={<Profile/>}/>
         <Route path="/SchoolManagement" element={<SchoolManagement/>}/>
         <Route path="/studyRecord" element={<StudyRecord/>}/>
-        <Route path="/" element={<RecordStudy/>}/>
+        <Route path="/recordStudy" element={<RecordStudy/>}/>
+        <Route path="/" element={<Event/>}/>
       </Routes>
     </BrowserRouter>
   );

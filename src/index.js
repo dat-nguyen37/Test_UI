@@ -9,8 +9,6 @@ import "@elastic/eui/dist/eui_theme_light.css";
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <EuiProvider >
-  <React.StrictMode>
     <App />
-  </React.StrictMode>
   </EuiProvider>
 );
