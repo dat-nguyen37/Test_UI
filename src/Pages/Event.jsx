@@ -1,17 +1,36 @@
 import { EuiAvatar, EuiButton, EuiButtonIcon, EuiFlexGroup, EuiFlexItem, EuiPage, EuiPageHeader, EuiPageHeaderContent, EuiPageSection, EuiPageTemplate, EuiPanel, EuiText, EuiTextColor } from '@elastic/eui'
-import React from 'react'
+import React, { useEffect } from 'react'
 import Headers from '../component/Header'
-import FullCalendar from "@fullcalendar/react";
-import dayGridPlugin from "@fullcalendar/daygrid";
-import timeGridPlugin from "@fullcalendar/timegrid";
-import rrulePlugin from '@fullcalendar/rrule';
-import interactionPlugin from '@fullcalendar/interaction'
-
-
-// import "@fullcalendar/core/main.css";
-// import "@fullcalendar/daygrid/main.css";
+import { useCalendarApp, ScheduleXCalendar } from '@schedule-x/react'
+import {
+  createViewDay,
+  createViewMonthAgenda,
+  createViewMonthGrid,
+  createViewWeek,
+} from '@schedule-x/calendar'
+import { createEventsServicePlugin  } from '@schedule-x/events-service'
+import { createEventModalPlugin } from '@schedule-x/event-modal'
+import { createDragAndDropPlugin } from '@schedule-x/drag-and-drop'
+import '@schedule-x/theme-default/dist/index.css'
 
 export default function Event() {
+    const eventService = [createEventsServicePlugin()]
+    const eventModal = createEventModalPlugin()
+    const calendar = useCalendarApp({
+        views: [ createViewMonthGrid(),createViewWeek(),createViewDay(), createViewMonthAgenda()],
+        defaultView:'month',
+        events: [
+          {
+            id: '1',
+            title: 'Giải bóng đá',
+            start: '2024-11-16 10:00',
+            end: '2024-11-16 14:00',
+            description:'',
+          }
+        ],
+        plugins:[eventService,eventModal,createDragAndDropPlugin()],
+      })
+      eventModal.close();
   return (
     <>
         <EuiPageHeader>
@@ -50,34 +69,7 @@ export default function Event() {
                         </EuiFlexGroup>
                     </EuiPanel>
                     <EuiPanel>
-                        <FullCalendar
-                        timeZone='UTC'
-                        initialView={"dayGridMonth"}
-                        headerToolbar={{
-                            left: "prev,next today",
-                            center: "title",
-                            right: "timeGridDay,timeGridWeek,dayGridMonth"
-                          }}
-                        plugins={[
-                            dayGridPlugin,
-                            timeGridPlugin,
-                            rrulePlugin,
-                            interactionPlugin   
-                        ]}
-                        height="90vh"
-                        events={[
-                            {
-                                title:"Giải bóng đá",
-                                rrule:{
-                                    freq: "daily",
-                                    count: 10,
-                                    dtstart: "2024-11-5T10:00:00Z",
-                                    until:"2024-11-6T10:00:00Z"
-                                },
-                                display:'background',
-                            }
-                        ]}
-                        />
+                        <ScheduleXCalendar calendarApp={calendar}/>
                     </EuiPanel>
                 </EuiFlexGroup>
             </EuiPageSection>
