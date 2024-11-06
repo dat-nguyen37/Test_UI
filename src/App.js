@@ -8,6 +8,7 @@ import StudyRecord from "./Pages/StudyRecord";
 import SchoolManagement from "./Pages/SchoolManagement";
 import RecordStudy from "./Pages/RecordStudy";
 import Event from "./Pages/Event";
+import Student from "./Pages/Student";
 function App() {
   return (
     <BrowserRouter>
@@ -20,7 +21,8 @@ function App() {
         <Route path="/SchoolManagement" element={<SchoolManagement/>}/>
         <Route path="/studyRecord" element={<StudyRecord/>}/>
         <Route path="/recordStudy" element={<RecordStudy/>}/>
-        <Route path="/" element={<Event/>}/>
+        <Route path="/Event" element={<Event/>}/>
+        <Route path="/" element={<Student/>}/>
       </Routes>
     </BrowserRouter>
   );

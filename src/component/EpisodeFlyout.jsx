@@ -1,15 +1,16 @@
 import React, { useState } from 'react'
 
 import {Show} from '../data'
-import { EuiButton, EuiFlexGroup, EuiFlexItem, EuiFlyout, EuiFlyoutBody, EuiFlyoutFooter, EuiFlyoutHeader, EuiImage, EuiSpacer, EuiStat, EuiText, EuiTitle } from '@elastic/eui'
+import { EuiButton, EuiFlexGroup, EuiFlexItem, EuiFlyout, EuiFlyoutBody, EuiFlyoutFooter, EuiFlyoutHeader, EuiImage, EuiSpacer, EuiStat, EuiText, EuiTitle, useCurrentEuiBreakpoint, useIsWithinBreakpoints } from '@elastic/eui'
 import moment from 'moment';
 
 export default function EpisodeFlyout({episode}) {
     const [isFlyoutVisible,setIsFlyoutVisible]=useState(false);
+    const mobile=useIsWithinBreakpoints(['m'])
     let flyout;
     if(isFlyoutVisible){
         flyout=(
-            <EuiFlyout size='s' onClose={()=>setIsFlyoutVisible(false)}>
+            <EuiFlyout size='s' type={mobile?'overlay':'push'} side='left' onClose={()=>setIsFlyoutVisible(false)}>
                 <EuiFlyoutHeader hasBorder>
                     <EuiTitle size='s'>
                         <h1>{episode.title}</h1>
