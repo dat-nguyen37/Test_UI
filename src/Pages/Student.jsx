@@ -1,11 +1,16 @@
 import React, { useState } from 'react'
 import Headers from '../component/Headers'
-import { EuiBasicTable, EuiButtonIcon, EuiFieldSearch, EuiFieldText, EuiFlexGroup, EuiFlexItem, EuiFormControlLayout, EuiIcon, EuiLink, EuiPage, EuiPageSection, EuiPageTemplate, EuiPopover, EuiPopoverTitle, EuiSelect, EuiText } from '@elastic/eui'
+import { EuiAccordion, EuiBasicTable, EuiButton, EuiButtonEmpty, EuiButtonIcon, EuiCard, EuiCollapsibleNavGroup, EuiFieldSearch, EuiFieldText, EuiFlexGrid, EuiFlexGroup, EuiFlexItem, EuiFormControlLayout, EuiIcon, EuiLink, EuiListGroup, EuiListGroupItem, EuiPage, EuiPageSection, EuiPageSidebar, EuiPageTemplate, EuiPopover, EuiPopoverTitle, EuiSelect, EuiSpacer, EuiText } from '@elastic/eui'
+import { css } from '@emotion/react'
 
 export default function Student() {
     const [isPopover,setIsPopover]=useState(false)
+    const [isSideBar,setIsSideBar]=useState(false)
     const openPopover=()=>setIsPopover(!isPopover)
     const closePopover=()=>setIsPopover(false)
+
+    const openSideBar=()=>setIsSideBar(!isSideBar)
+    const closeSideBar=()=>setIsSideBar(false)
 
     const columns=[
         {field:"TietHoc",name:"Tiết học"},
@@ -25,8 +30,58 @@ export default function Student() {
         ]
   return (
     <>
+        <Headers openSideBar={openSideBar}/>
         <EuiPageTemplate>
-        <Headers/>
+                {isSideBar&&<EuiPageTemplate.Sidebar paddingSize='l' minWidth='220px'>
+                    <EuiFlexGroup alignItems='center' gutterSize='m' responsive={false}>
+                        <EuiFlexItem grow={false} style={{padding:'5px',border:'1px sold gray',borderRadius:'50%',background:'white',boxShadow:'1px 1px 4px rgba(0, 0, 0, 0.7)'}}>
+                            <EuiIcon type="gear"/>
+                        </EuiFlexItem>
+                        <EuiText><strong>SCM</strong></EuiText>
+                    </EuiFlexGroup>
+                    <EuiSpacer/>
+                    <EuiAccordion
+                        initialIsOpen={true}
+                        buttonContent={<EuiText><b>Quản lý tài khoản</b></EuiText>}
+                        arrowDisplay='right'
+                        style={{paddingInline:''}}
+                     >
+                        <EuiListGroup flush gutterSize='none'>
+                            <EuiListGroupItem label="Chỉnh sửa thông tin"/>
+                            <EuiListGroupItem href='#' color='primary' label={<b>Hồ sơ cá nhân</b>}/>
+                        </EuiListGroup>
+                    </EuiAccordion>
+                    <EuiAccordion
+                        initialIsOpen={true}
+                        buttonContent={<EuiText><b>Học tập</b></EuiText>}
+                        arrowDisplay='none'
+                     >
+                        <EuiListGroup flush gutterSize='none'>
+                            <EuiListGroupItem label="Thời khóa biểu"/>
+                            <EuiListGroupItem label="Danh sách lớp"/>
+                        </EuiListGroup>
+                    </EuiAccordion>
+                    <EuiAccordion
+                        initialIsOpen={true}
+                        buttonContent={<EuiText><b>Sự kiện & HĐNK</b></EuiText>}
+                        arrowDisplay='none'
+                     >
+                        <EuiListGroup flush gutterSize='none'>
+                            <EuiListGroupItem label="Danh sách sự kiện"/>
+                            <EuiListGroupItem label="Sự kiện đã tham gia"/>
+                        </EuiListGroup>
+                    </EuiAccordion>
+                    <EuiAccordion
+                        initialIsOpen={true}
+                        buttonContent={<EuiText><b>Học phí</b></EuiText>}
+                        arrowDisplay='none'
+                     >
+                        <EuiListGroup flush gutterSize='none'>
+                            <EuiListGroupItem label="Đóng học phí"/>
+                        </EuiListGroup>
+                    </EuiAccordion>
+
+                </EuiPageTemplate.Sidebar>}
             <EuiPageTemplate.Header
             paddingSize='m'
             pageTitle={
@@ -92,6 +147,31 @@ export default function Student() {
                     columns={columns}
                     items={items}
                 />
+                <EuiSpacer/>
+                <EuiFlexGrid columns={4}>
+                    {[1,2,3,4,5,6,7,8].map(item=>(
+                        <EuiFlexItem>
+                        <EuiCard
+                            image="/assets/card.png"
+                            paddingSize='s'
+                            icon={<EuiIcon size="xxl" type="package" color='white'/>}
+                            title="Hồ sơ cá nhân"
+                            description={
+                                <p>
+                                    <EuiText size='xs'>Quản lý tài khoản</EuiText>
+                                    <EuiText size='xs'>Quản lý thông tin cá nhân</EuiText>
+                                </p>
+                            }
+                            footer={
+                                <EuiButton fullWidth style={{marginBlockStart:'-16px'}}>Select</EuiButton>
+                            }
+                            betaBadgeProps={{
+                                label:'Beta'
+                            }}
+                        />
+                    </EuiFlexItem>
+                    ))}
+                </EuiFlexGrid>
             </EuiPageTemplate.Section>
             <EuiPageTemplate.BottomBar paddingSize='s' color='#343741'>
                 <EuiFlexGroup justifyContent='spaceBetween' alignItems='center'>

@@ -1,14 +1,14 @@
 import { EuiAvatar, EuiButtonEmpty, EuiFlexGroup, EuiHeader, EuiHeaderBreadcrumbs, EuiHeaderSection, EuiHeaderSectionItem, EuiHeaderSectionItemButton, EuiIcon, EuiImage, EuiPageHeader, EuiPageHeaderContent } from '@elastic/eui'
 import React from 'react'
 
-export default function Headers() {
+export default function Headers({openSideBar}) {
   return (
     <EuiPageHeader>
             <EuiPageHeaderContent>
                 <EuiHeader style={{width:'100%'}}>
                     <EuiHeaderSection>
                         <EuiHeaderSectionItem>
-                            <EuiButtonEmpty iconType="menu" color='text'/>
+                            <EuiButtonEmpty onClick={openSideBar} iconType="menu" color='text'/>
                             <EuiImage src="/assets/logo.png" width="100px" height="25px"/>
                         </EuiHeaderSectionItem>
                         <EuiHeaderSectionItem style={{padding:'10px'}}>
