@@ -1,5 +1,5 @@
-import { EuiButton, EuiButtonEmpty, EuiButtonGroup, EuiButtonIcon, EuiFieldSearch, EuiFieldText, EuiFlexGroup, EuiFlexItem, EuiFormControlLayout, EuiIcon, EuiImage, EuiPageBody, EuiPageSection, EuiPageTemplate, EuiPanel, EuiPopover, EuiPopoverFooter, EuiPopoverTitle, EuiTable, EuiTableBody, EuiTableHeader, EuiTableHeaderCell, EuiTableRow, EuiTableRowCell, EuiText } from '@elastic/eui'
-import React, { useState } from 'react'
+import { EuiButton, EuiButtonEmpty, EuiButtonGroup, EuiButtonIcon, EuiFieldSearch, EuiFieldText, EuiFlexGroup, EuiFlexItem, EuiFormControlLayout, EuiIcon, EuiImage, EuiPageBody, EuiPageSection, EuiPageTemplate, EuiPagination, EuiPanel, EuiPopover, EuiPopoverFooter, EuiPopoverTitle, EuiTable, EuiTableBody, EuiTableHeader, EuiTableHeaderCell, EuiTableRow, EuiTableRowCell, EuiText } from '@elastic/eui'
+import React, { useEffect, useState } from 'react'
 import Headers from '../component/Header'
 import Footer from '../component/Footer'
 export default function SchoolManagement() {
@@ -31,19 +31,41 @@ export default function SchoolManagement() {
     {name:"Thao tác"},
 ]
 const items=[
-    {'Logo':'/assets/avata.png','NameSchool':'Trường THPT chuyên Hà Nội','Address':'Cầu giấy',"Gender":"Nữ","HeadMaster":"Trần Thùy Dươn",'Phone':"093743848"},
-    {'Logo':'/assets/avata.png','NameSchool':'Trường THPT chuyên Hà Nội','Address':'Cầu giấy',"Gender":"Nữ","HeadMaster":"Trần Thùy Dươn",'Phone':"093743848"},
-    {'Logo':'/assets/avata.png','NameSchool':'Trường THPT chuyên Hà Nội','Address':'Cầu giấy',"Gender":"Nữ","HeadMaster":"Trần Thùy Dươn",'Phone':"093743848"},
-    {'Logo':'/assets/avata.png','NameSchool':'Trường THPT chuyên Hà Nội','Address':'Cầu giấy',"Gender":"Nữ","HeadMaster":"Trần Thùy Dươn",'Phone':"093743848"},
-    {'Logo':'/assets/avata.png','NameSchool':'Trường THPT chuyên Hà Nội','Address':'Cầu giấy',"Gender":"Nữ","HeadMaster":"Trần Thùy Dươn",'Phone':"093743848"},
-    {'Logo':'/assets/avata.png','NameSchool':'Trường THPT chuyên Hà Nội','Address':'Cầu giấy',"Gender":"Nữ","HeadMaster":"Trần Thùy Dươn",'Phone':"093743848"},
+    {'Logo':'/assets/avata.png','NameSchool':'Trường THPT chuyên Hà Nội1','Address':'Cầu giấy',"Gender":"Nữ","HeadMaster":"Trần Thùy Dươn",'Phone':"093743848"},
+    {'Logo':'/assets/avata.png','NameSchool':'Trường THPT chuyên Hà Nội2','Address':'Cầu giấy',"Gender":"Nữ","HeadMaster":"Trần Thùy Dươn",'Phone':"093743848"},
+    {'Logo':'/assets/avata.png','NameSchool':'Trường THPT chuyên Hà Nội3','Address':'Cầu giấy',"Gender":"Nữ","HeadMaster":"Trần Thùy Dươn",'Phone':"093743848"},
+    {'Logo':'/assets/avata.png','NameSchool':'Trường THPT chuyên Hà Nội4','Address':'Cầu giấy',"Gender":"Nữ","HeadMaster":"Trần Thùy Dươn",'Phone':"093743848"},
+    {'Logo':'/assets/avata.png','NameSchool':'Trường THPT chuyên Hà Nội5','Address':'Cầu giấy',"Gender":"Nữ","HeadMaster":"Trần Thùy Dươn",'Phone':"093743848"},
+    {'Logo':'/assets/avata.png','NameSchool':'Trường THPT chuyên Hà Nội6','Address':'Cầu giấy',"Gender":"Nữ","HeadMaster":"Trần Thùy Dươn",'Phone':"093743848"},
+    {'Logo':'/assets/avata.png','NameSchool':'Trường THPT chuyên Hà Nội7','Address':'Cầu giấy',"Gender":"Nữ","HeadMaster":"Trần Thùy Dươn",'Phone':"093743848"},
+    {'Logo':'/assets/avata.png','NameSchool':'Trường THPT chuyên Hà Nội8','Address':'Cầu giấy',"Gender":"Nữ","HeadMaster":"Trần Thùy Dươn",'Phone':"093743848"},
+    {'Logo':'/assets/avata.png','NameSchool':'Trường THPT chuyên Hà Nội9','Address':'Cầu giấy',"Gender":"Nữ","HeadMaster":"Trần Thùy Dươn",'Phone':"093743848"},
+    {'Logo':'/assets/avata.png','NameSchool':'Trường THPT chuyên Hà Nội10','Address':'Cầu giấy',"Gender":"Nữ","HeadMaster":"Trần Thùy Dươn",'Phone':"093743848"},
+    {'Logo':'/assets/avata.png','NameSchool':'Trường THPT chuyên Hà Nội11','Address':'Cầu giấy',"Gender":"Nữ","HeadMaster":"Trần Thùy Dươn",'Phone':"093743848"},
+    {'Logo':'/assets/avata.png','NameSchool':'Trường THPT chuyên Hà Nội12','Address':'Cầu giấy',"Gender":"Nữ","HeadMaster":"Trần Thùy Dươn",'Phone':"093743848"},
+    {'Logo':'/assets/avata.png','NameSchool':'Trường THPT chuyên Hà Nội13','Address':'Cầu giấy',"Gender":"Nữ","HeadMaster":"Trần Thùy Dươn",'Phone':"093743848"},
+    {'Logo':'/assets/avata.png','NameSchool':'Trường THPT chuyên Hà Nội14','Address':'Cầu giấy',"Gender":"Nữ","HeadMaster":"Trần Thùy Dươn",'Phone':"093743848"},
+    {'Logo':'/assets/avata.png','NameSchool':'Trường THPT chuyên Hà Nội15','Address':'Cầu giấy',"Gender":"Nữ","HeadMaster":"Trần Thùy Dươn",'Phone':"093743848"},
 
     ]
-  const cities=[
-    {name:'Hà Nội'},
-    {name:'TP.Hồ Chí Minh'},
-    {name:'Hải Phòng'},
-  ]
+    const cities=[
+      {name:'Hà Nội'},
+      {name:'TP.Hồ Chí Minh'},
+      {name:'Hải Phòng'},
+    ]
+    const [activePage, setActivePage] = useState(0);
+    const [pageSize, setPageSize] = useState(5);
+    const [pageCount, setPageCount] = useState(1);
+
+    useEffect(() => {
+      const totalPageCount = Math.ceil(items.length / pageSize);
+      setPageCount(totalPageCount);
+    }, [items, pageSize]);
+    
+    const handleActivePage = (page) => {
+      setActivePage(page);
+    };
+    const itemOfPage = items.slice(activePage * pageSize, (activePage + 1) * pageSize);
   return (
     <EuiPageTemplate>
         <Headers/>
@@ -164,7 +186,7 @@ const items=[
                             ))}
                         </EuiTableHeader>
                         <EuiTableBody style={{padding:'20px'}}>
-                            {items.map(item=>(
+                            {itemOfPage.map(item=>(
                                 <EuiTableRow>
                                     <EuiTableRowCell
                                     style={{padding:'1rem'}}
@@ -222,20 +244,14 @@ const items=[
           <EuiFlexGroup justifyContent='spaceBetween' alignItems='center' responsive={false} style={{padding:'1rem'}}>
                       <EuiFlexItem>
                         <EuiText>
-                          <span>Showing 1- 09 of 78</span>
+                          <span>Showing {activePage*pageSize+1}- {(activePage+1)*pageSize} of {items.length}</span>
                         </EuiText>
                       </EuiFlexItem>
                         <EuiFlexItem grow={false}>
-                            <EuiFlexGroup gutterSize='none' alignItems='center' style={{border:'1px solid gray',borderRadius:'1rem',background:''}}>
-                                <EuiButtonEmpty iconType='arrowLeft' color='text'/>
-                                <EuiButtonEmpty color='text'>1</EuiButtonEmpty>
-                                <EuiButtonEmpty color='text'>2</EuiButtonEmpty>
-                                <EuiButtonEmpty color='text'>3</EuiButtonEmpty>
-                                <EuiButtonEmpty color='text'>...</EuiButtonEmpty>
-                                <EuiButtonEmpty color='text'>8</EuiButtonEmpty>
-                                <EuiButtonEmpty color='text'>9</EuiButtonEmpty>
-                                <EuiButtonIcon iconType='arrowRight' color='text'/>
-                            </EuiFlexGroup>
+                            <EuiPagination
+                            pageCount={pageCount}
+                            activePage={activePage}
+                            onPageClick={(page) => handleActivePage(page)}/>
                         </EuiFlexItem>
                     </EuiFlexGroup>
           </EuiPageSection>

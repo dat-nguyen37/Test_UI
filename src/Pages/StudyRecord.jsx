@@ -150,11 +150,11 @@ export default function StudyRecord() {
                             <EuiFlexItem>
                                 <EuiFlexGroup alignItems='center' gutterSize='m'>
                                     <EuiAvatar name='' imageUrl='/assets/avata.png'/>
-                                    <EuiText><span><strong>Họ và tên:</strong>Lê Chí Tuyền</span></EuiText>
-                                    <EuiText><span><strong>Lớp:</strong>12A12</span></EuiText>
-                                    <EuiText><span><strong>Trường:</strong>THPT Bách Khoa</span></EuiText>
-                                    <EuiText><span><strong>Ngày sinh:</strong>20/10/2024</span></EuiText>
-                                    <EuiText><span><strong>Email:</strong>lechituyen@gmail.com</span></EuiText>
+                                    <EuiText><span><strong>Họ và tên:&nbsp;</strong>Lê Chí Tuyền</span></EuiText>
+                                    <EuiText><span><strong>Lớp:&nbsp;</strong>12A12</span></EuiText>
+                                    <EuiText><span><strong>Trường:&nbsp;</strong>THPT Bách Khoa</span></EuiText>
+                                    <EuiText><span><strong>Ngày sinh:&nbsp;</strong>20/10/2024</span></EuiText>
+                                    <EuiText><span><strong>Email:&nbsp;</strong>lechituyen@gmail.com</span></EuiText>
                                 </EuiFlexGroup>
                             </EuiFlexItem>
                             <EuiFlexItem grow={false}>
