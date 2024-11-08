@@ -1,259 +1,213 @@
-import { EuiAvatar, EuiBasicTable, EuiButton, EuiButtonEmpty, EuiButtonGroup, EuiButtonIcon, EuiFieldText, EuiFilterButton, EuiFilterGroup, EuiFlexGroup, EuiFlexItem, EuiFormLabel, EuiIcon, EuiPage, EuiPageBody, EuiPageSection, EuiPageTemplate, EuiPanel, EuiPopover, EuiPopoverFooter, EuiPopoverTitle, EuiTable, EuiTableBody, EuiTableHeader, EuiTableHeaderCell, EuiTableRow, EuiTableRowCell, EuiText } from '@elastic/eui'
+import { EuiAvatar, EuiBasicTable, EuiBreadcrumbs, EuiButton, EuiButtonEmpty, EuiButtonIcon, EuiFlexGroup, EuiFlexItem, EuiHeader, EuiHeaderBreadcrumbs, EuiHeaderLogo, EuiHeaderSection, EuiHeaderSectionItem, EuiHeaderSectionItemButton, EuiHorizontalRule, EuiIcon, EuiImage, EuiPageHeader, EuiPageHeaderContent, EuiPageTemplate, EuiPopover, EuiSpacer, EuiText } from '@elastic/eui'
 import React, { useState } from 'react'
-import Header from '../component/Header'
-import Footer from '../component/Footer'
 
 export default function StudyRecord() {
-    const [isPopoverOpen, setIsPopoverOpen] = useState(false);
-    const [isSeletedId,setIsSelectedId]=useState(1)
-    const [startIndex, setStartIndex] = useState(0);
     const [pageIndex, setPageIndex] = useState(0);
-
-    const ClosePopover=()=>{setIsPopoverOpen(!isPopoverOpen)}
-    const OpenPopover=()=>{setIsPopoverOpen(!isPopoverOpen)}
-
-    const selectedId=(id)=>{
-        setIsSelectedId(id)
-    }
-    const optionYears=[
-        {id:0,label:'2021'},
-        {id:1,label:'2022'},
-        {id:2,label:'2023'},
-        {id:3,label:'2024'},
-        {id:4,label:'2025'},
-        {id:5,label:'2026'},
-        {id:6,label:'2027'},
+    const [pageSize, setPageSize] = useState(5);
+    const columns=[
+        {field:'TenMH',name:'Tên môn học',render:(TenMH)=>(<span style={{color:"blue"}}>{TenMH}</span>)},
+        {field:'KTM',name:'Kiểm tra miệng'},
+        {field:'KT15P',name:'Kiểm tra 15p'},
+        {field:'KT45P',name:'Kiểm tra 45p'},
+        {field:'KT1T',name:'Kiểm tra 1 tiết'},
+        {field:'KTGK',name:'Kiểm tra giữa kì'},
+        {field:'KTCK',name:'Kiểm tra cuối kì'},
+        {field:'GVPT',name:'Giáo viên phụ trách'},
     ]
-    const handleNextYear = () => {
-        if (startIndex + 5 < optionYears.length) {
-            setStartIndex(startIndex + 5);
-        }
-    };
-    const handlePreviousYear = () => {
-        if (startIndex - 5 >= 0) {
-            setStartIndex(startIndex - 5);
-        }
-    };
-    const onTableChange = (page)=> {
+    const items=[
+        {"TenMH":"Toán học","KTM":10,"KT15P":10,"KT45P":10,"KT1T":10,"KTGK":10,"KTCK":10,"GVPT":"Lê Chí Tuyền"},
+        {"TenMH":"Ngữ văn","KTM":10,"KT15P":10,"KT45P":10,"KT1T":10,"KTGK":10,"KTCK":10,"GVPT":"Lê Chí Tuyền"},
+        {"TenMH":"Tiếng anh","KTM":10,"KT15P":10,"KT45P":10,"KT1T":10,"KTGK":10,"KTCK":10,"GVPT":"Lê Chí Tuyền"},
+        {"TenMH":"Vật lý","KTM":10,"KT15P":10,"KT45P":10,"KT1T":10,"KTGK":10,"KTCK":10,"GVPT":"Lê Chí Tuyền"},
+        {"TenMH":"Hóa học","KTM":10,"KT15P":10,"KT45P":10,"KT1T":10,"KTGK":10,"KTCK":10,"GVPT":"Lê Chí Tuyền"},
+        {"TenMH":"Sinh học","KTM":10,"KT15P":10,"KT45P":10,"KT1T":10,"KTGK":10,"KTCK":10,"GVPT":"Lê Chí Tuyền"},
+        {"TenMH":"Địa lý","KTM":10,"KT15P":10,"KT45P":10,"KT1T":10,"KTGK":10,"KTCK":10,"GVPT":"Lê Chí Tuyền"},
+        {"TenMH":"Lịch sử","KTM":10,"KT15P":10,"KT45P":10,"KT1T":10,"KTGK":10,"KTCK":10,"GVPT":"Lê Chí Tuyền"},
+        {"TenMH":"Giáo dục công dân","KT15P":10,"KTM":10,"KT45P":10,"KT1T":10,"KTGK":10,"KTCK":10,"GVPT":"Lê Chí Tuyền"},
+        {"TenMH":"Công nghệ","KTM":10,"KT15P":10,"KT45P":10,"KT1T":10,"KTGK":10,"KTCK":10,"GVPT":"Lê Chí Tuyền"},
+    ]
+    const onTableChange = ({ page }) => {
         if (page) {
           const { index: pageIndex, size: pageSize } = page;
           setPageIndex(pageIndex);
+          setPageSize(pageSize);
         }
-    }
-    const pagination = {
-        pageIndex: 1,
-        pageSize: 5,
-        totalItemCount: 10,
       };
+    const findUsers = (items, pageIndex, pageSize) => {
+        let pageOfItems;
+    
+        if (!pageIndex && !pageSize) {
+          pageOfItems = items;
+        } else {
+          const startIndex = pageIndex * pageSize;
+          pageOfItems = items.slice(
+            startIndex,
+            Math.min(startIndex + pageSize, items.length)
+          );
+        }
+        return {
+          pageOfItems,
+          totalItemCount: items.length,
+        };
+      };
+      const { pageOfItems, totalItemCount } = findUsers(items, pageIndex, pageSize);
 
-      const columns=[
-        {field:"STT",name:"STT"},
-        {field:"TMH",name:"Tên môn học"},
-        {field:"KTM",name:"KT Miệng"},
-        {field:"KT15",name:"KT 15'"},
-        {field:"KT45",name:"KT 45'"},
-        {field:"Thi",name:"Thi"},
-        {field:"Sum",name:"Tổng"},
-    ]
-    const items=[
-        {'STT':1,'TMH':'Toán','KTM':10,"KT15":10,"KT45":10,'Thi':10,'Sum':10},
-        {'STT':2,'TMH':'Vật lý','KTM':10,"KT15":'10',"KT45":10,'Thi':10,'Sum':10},
-        {'STT':3,'TMH':'Ngữ văn','KTM':10,"KT15":'10',"KT45":10,'Thi':10,'Sum':10},
-        {'STT':4,'TMH':'Hóa học','KTM':10,"KT15":'10',"KT45":10,'Thi':10,'Sum':10},
-        {'STT':5,'TMH':'Tiếng anh','KTM':10,"KT15":'10',"KT45":10,'Thi':10,'Sum':10}
-        ]
-
+    const pagination = {
+        pageIndex,
+        pageSize,
+        totalItemCount,
+        pageSizeOptions: [10,5, 0],
+    };
   return (
-    <EuiPageTemplate>
-        <Header/>
-        <EuiPageBody>
-            <EuiPageSection style={{marginBlock:'-20px'}}>
-                <EuiFlexGroup alignItems='center' gutterSize='m' responsive={false}>
-                    <EuiFlexItem grow={false}>
-                        <EuiButtonIcon 
-                        display='fill' 
-                        iconType="arrowLeft"
-                        size='m'
-                        color='accent'
-                        style={{background:'#FFFF',boxShadow:'0 1px 4px rgba(0, 0, 0, 0.08)'}}/>
+    <EuiPageTemplate style={{background:'#FFF'}}>
+        <EuiPageHeader>
+            <EuiPageHeaderContent>
+                <EuiHeader style={{width:'100%'}}>
+                    <EuiHeaderSection>
+                        <EuiFlexGroup gutterSize='s'>
+                        <EuiHeaderSectionItem>
+                            <EuiButtonIcon iconType="menu"/>
+                        </EuiHeaderSectionItem>
+                        <EuiHeaderSectionItem>
+                            <EuiImage src='/assets/logo.png' size="s"/>
+                        </EuiHeaderSectionItem>
+                        <EuiHeaderSectionItem>
+                            <EuiAvatar name='S' type='space' size='s' color="#68C4A2"/>
+                        </EuiHeaderSectionItem>
+                        <EuiHeaderSectionItem>
+                            <EuiHeaderBreadcrumbs
+                            max={2}
+                            breadcrumbs={[
+                                {
+                                    text:'Analytics',
+                                    href:'#'
+                                },
+                                {
+                                    text:'Analytics',
+                                    href:'#'
+                                },
+                                {
+                                    text:'Analytics',
+                                    href:'#'
+                                },
+                                {
+                                    text:'Học bạ học sinh',
+                                },
+                            ]}/>
+                        </EuiHeaderSectionItem>
+                        </EuiFlexGroup>
+                    </EuiHeaderSection>
+                    <EuiHeaderSection side='right'>
+                        <EuiFlexGroup>
+                        <EuiHeaderSectionItem>
+                            <EuiHeaderSectionItemButton notification={2}>
+                                <EuiIcon type="bell"/>
+                            </EuiHeaderSectionItemButton>
+                        </EuiHeaderSectionItem>
+                        <EuiHeaderSectionItem>
+                            <EuiHeaderSectionItemButton notification={2}>
+                                <EuiIcon type="email"/>
+                            </EuiHeaderSectionItemButton>
+                        </EuiHeaderSectionItem>
+                        <EuiHeaderSectionItem>
+                            <EuiAvatar name='EL' initialsLength={2} size='s'/>
+                        </EuiHeaderSectionItem>
+                        <EuiHeaderSectionItem>
+                            <EuiIcon type="apps"/>
+                        </EuiHeaderSectionItem>
+                        </EuiFlexGroup>
+                    </EuiHeaderSection>
+                </EuiHeader>
+            </EuiPageHeaderContent>
+        </EuiPageHeader>
+        <EuiPageTemplate.Header 
+            paddingSize='s'
+            alignItems='center'
+            pageTitle={
+                <EuiFlexGroup direction='column'>
+                    <EuiFlexItem>
+                        <EuiFlexGroup justifyContent='spaceBetween'>
+                            <EuiFlexItem grow={false}>
+                                <EuiFlexGroup>
+                                    <EuiFlexItem grow={false}>
+                                        <EuiButtonIcon display='fill' iconType="arrowLeft" size='s'/>
+                                    </EuiFlexItem>
+                                    <EuiFlexItem grow={false}>
+                                        <EuiText><h2>Học bạ học sinh</h2></EuiText>
+                                    </EuiFlexItem>
+                                </EuiFlexGroup>
+                            </EuiFlexItem>
+                            <EuiFlexItem grow={false}>
+                                <EuiFlexGroup>
+                                    <EuiButton>Do something</EuiButton>
+                                    <EuiButton fill iconType="plusInCircle">Add something</EuiButton>
+                                </EuiFlexGroup>
+                            </EuiFlexItem>
+                        </EuiFlexGroup>
                     </EuiFlexItem>
-                    <EuiFlexItem grow={false}>
-                        <EuiText><h3>Học bạ học sinh</h3></EuiText>
-                    </EuiFlexItem>
-                </EuiFlexGroup>
-            </EuiPageSection>
-            <EuiPageSection style={{marginBlock:'-20px'}}>
-                <EuiPanel paddingSize='none'>
-                    <EuiFlexGroup direction='column' gutterSize='none'>
-                        <EuiFlexItem style={{padding:'20px',borderBottom:'1px solid gray'}}>
-                            <EuiFlexGroup>
-                                <EuiFlexItem >
-                                    <EuiFlexGroup alignItems='center' gutterSize='xl'>
-                                        <EuiAvatar name="name" imageUrl='/assets/avata.png' size='l'/>
-                                        <EuiText size="m">
-                                            <span>Họ và tên:&nbsp;</span>
-                                            <strong>Lê Chí Tuyền</strong>
-                                        </EuiText>
-                                    </EuiFlexGroup>
-                                </EuiFlexItem>
-                                <EuiFlexItem >
-                                    <EuiFlexGroup alignItems='center' gutterSize='xl'>
-                                        <EuiText size="m">
-                                            <span>Lớp:&nbsp;</span>
-                                            <strong>12A12</strong>
-                                        </EuiText>
-                                        <EuiText size="m">
-                                            <span>Ngày sinh:&nbsp;</span>
-                                            <strong>20/10/2024</strong>
-                                        </EuiText>
-                                    </EuiFlexGroup>
-                                </EuiFlexItem>
-                                <EuiFlexItem >
-                                    <EuiFlexGroup alignItems='center' gutterSize='xl'>
-                                        <EuiFlexItem >
-                                              <EuiPopover panelPaddingSize='m'
-                                                anchorPosition='downLeft'
-                                                panelStyle={{outline:'none',width:'300px'}}
-                                                hasArrow={false}
-                                                button={
-                                                    <EuiFieldText
-                                                        disabled
-                                                        prepend={
-                                                            <EuiFlexGroup gutterSize='none' alignItems='center' >
-                                                                <EuiIcon type="logstashFilter" style={{borderInlineEnd:'1px solid',background:"#eef2f7"}}/>
-                                                                <EuiFormLabel style={{background:"#eef2f7",outline:'none'}}>Năm học</EuiFormLabel>
-                                                            </EuiFlexGroup>
-                                                        }
-                                                        append={<EuiIcon onClick={OpenPopover} type="arrowDown"/>}
-                                                        value={optionYears.find(opt => opt.id === isSeletedId)?.label || "Select Year"}
-                                                    />
-                                                }
-                                                isOpen={isPopoverOpen}
-                                                closePopover={ClosePopover}
-                                                >
-                                                    <EuiPopoverTitle >
-                                                        <EuiFlexGroup justifyContent='spaceBetween'>
-                                                            <EuiFlexItem grow={false}>
-                                                                <EuiText><strong>Chọn năm học</strong></EuiText>
-                                                            </EuiFlexItem>
-                                                            <EuiFlexItem grow={false}>
-                                                                <EuiFlexGroup>
-                                                                    <EuiButtonIcon onClick={handlePreviousYear} display='fill' color='text' iconType='arrowLeft'/>
-                                                                    <EuiButtonIcon onClick={handleNextYear} display='fill' color='text' iconType='arrowRight'/>
-                                                                </EuiFlexGroup>
-                                                            </EuiFlexItem>
-                                                        </EuiFlexGroup>
-                                                    </EuiPopoverTitle>
-                                                    <EuiFlexGroup>
-                                                            <EuiButtonGroup name="year" options={optionYears.slice(startIndex,startIndex+5)}
-                                                            onChange={(id)=>selectedId(id)}
-                                                            idSelected={isSeletedId}
-                                                            buttonSize="compressed"
-                                                            color='primary'
-                                                            isFullWidth/>
-                                                    </EuiFlexGroup>
-                                                    <EuiPopoverFooter style={{textAlign:'center'}}>
-                                                        <EuiButton fill>Xác nhận</EuiButton>
-                                                    </EuiPopoverFooter>
-                                                </EuiPopover>
+                    <EuiFlexItem>
+                        <EuiFlexGroup>
+                            <EuiFlexItem>
+                                <EuiFlexGroup alignItems='center' gutterSize='m'>
+                                    <EuiAvatar name='' imageUrl='/assets/avata.png'/>
+                                    <EuiText><span><strong>Họ và tên:</strong>Lê Chí Tuyền</span></EuiText>
+                                    <EuiText><span><strong>Lớp:</strong>12A12</span></EuiText>
+                                    <EuiText><span><strong>Trường:</strong>THPT Bách Khoa</span></EuiText>
+                                    <EuiText><span><strong>Ngày sinh:</strong>20/10/2024</span></EuiText>
+                                    <EuiText><span><strong>Email:</strong>lechituyen@gmail.com</span></EuiText>
+                                </EuiFlexGroup>
+                            </EuiFlexItem>
+                            <EuiFlexItem grow={false}>
+                                <EuiPopover
+                                hasArrow={false}
+                                isOpen={false}
+                                panelStyle={{outline:'none'}}
+                                button={
+                                    <EuiFlexGroup alignItems='center' gutterSize='s'>
+                                        <EuiFlexItem grow={false}>
+                                            <EuiText color='blue'>Năm học: 2024</EuiText>
                                         </EuiFlexItem>
                                         <EuiFlexItem grow={false}>
-                                            <EuiButton iconType="/assets/printing.png" iconSize='l'>
-                                            </EuiButton>
+                                            <EuiIcon type="arrowDown" color='blue'/>
                                         </EuiFlexItem>
                                     </EuiFlexGroup>
-                                </EuiFlexItem>
-                            </EuiFlexGroup>
+                                }>
+
+                                </EuiPopover>
+                            </EuiFlexItem>
+                        </EuiFlexGroup>
+                    </EuiFlexItem>
+                </EuiFlexGroup>
+            } 
+        />
+        <EuiPageTemplate.Section>
+            <EuiText size='s'>Điểm tổng kết: 10</EuiText>
+            <EuiSpacer size="s" />
+            <EuiHorizontalRule margin="none" style={{ height: 2 }} />
+            <EuiBasicTable
+                items={pageOfItems}
+                columns={columns}
+                pagination={pagination}
+                onChange={onTableChange}
+            />
+        </EuiPageTemplate.Section>
+        <EuiPageTemplate.BottomBar paddingSize='s'>
+            <EuiFlexGroup justifyContent='spaceBetween' alignItems='center'>
+                <EuiFlexItem grow={false}>
+                    <EuiText>Paragraph</EuiText>
+                </EuiFlexItem>
+                <EuiFlexItem grow={false}>
+                    <EuiFlexGroup>
+                        <EuiFlexItem>
+                            <EuiButton color='text'>Button</EuiButton>
                         </EuiFlexItem>
-                        <EuiFlexItem style={{padding:'20px'}}>
-                            <EuiTable>
-                                <EuiTableHeader>
-                                    {columns.map((column) => (
-                                        <EuiTableHeaderCell
-                                        key={column.field}
-                                        style={{
-                                            backgroundColor: '#f5f5f5',
-                                            padding:'1rem'
-                                        }}
-                                        >
-                                        {column.name}
-                                        </EuiTableHeaderCell>
-                                    ))}
-                                </EuiTableHeader>
-                                <EuiTableBody>
-                                    {items.map(item=>(
-                                        <EuiTableRow>
-                                            <EuiTableRowCell
-                                            style={{padding:'1rem'}}
-                                            mobileOptions={{
-                                                header:"STT",
-                                                
-                                            }}>{item.STT}</EuiTableRowCell>
-                                            <EuiTableRowCell
-                                            style={{padding:'1rem'}}
-                                            mobileOptions={{
-                                                header:"Tên môn học"
-                                            }}>{item.TMH}</EuiTableRowCell>
-                                            <EuiTableRowCell
-                                            style={{padding:'1rem'}}
-                                            mobileOptions={{
-                                                header:"Kiểm tra miệng"
-                                            }}>{item.KTM}</EuiTableRowCell>
-                                            <EuiTableRowCell
-                                            style={{padding:'1rem'}}
-                                            mobileOptions={{
-                                                header:"Kiểm tra 15'"
-                                            }}>{item.KT15}</EuiTableRowCell>
-                                            <EuiTableRowCell
-                                            style={{padding:'1rem'}}
-                                            mobileOptions={{
-                                                header:"Kiểm tra 45'"
-                                            }}>{item.KT45}</EuiTableRowCell>
-                                            <EuiTableRowCell
-                                            style={{padding:'1rem'}}
-                                            mobileOptions={{
-                                                header:"Thi"
-                                            }}>{item.Thi}</EuiTableRowCell>
-                                            <EuiTableRowCell
-                                            style={{padding:'1rem'}}
-                                            mobileOptions={{
-                                                header:"Tổng"
-                                            }}>{item.Sum}</EuiTableRowCell>
-                                        </EuiTableRow>
-                                    ))}
-                                </EuiTableBody>
-                            </EuiTable>
-                            <EuiFlexGroup justifyContent='spaceBetween' alignItems='center' responsive={false} style={{padding:'1rem'}}>
-                                <EuiFlexItem grow={false}>
-                                    <EuiFlexGroup gutterSize='none' alignItems='center' style={{border:'1px solid gray',borderRadius:'1rem',background:''}}>
-                                        <EuiButtonIcon iconType='arrowLeft' color='text'/>
-                                        <EuiButtonEmpty color='text'>1</EuiButtonEmpty>
-                                        <EuiButtonEmpty color='text'>2</EuiButtonEmpty>
-                                        <EuiButtonEmpty color='text'>3</EuiButtonEmpty>
-                                        <EuiButtonEmpty color='text'>...</EuiButtonEmpty>
-                                        <EuiButtonEmpty color='text'>8</EuiButtonEmpty>
-                                        <EuiButtonEmpty color='text'>9</EuiButtonEmpty>
-                                        <EuiButtonIcon iconType='arrowRight' color='text'/>
-                                    </EuiFlexGroup>
-                                </EuiFlexItem>
-                                <EuiFlexItem grow={false}>
-                                    <EuiText>
-                                        <strong>Điểm tổng kết = 7.9</strong>
-                                    </EuiText>
-                                </EuiFlexItem>
-                            </EuiFlexGroup>
-                            {/* <EuiBasicTable
-                                rowHeader='STT'
-                                pagination={pagination}
-                                onChange={onTableChange}
-                                columns={columns}
-                                items={items}/> */}
+                        <EuiFlexItem>
+                            <EuiButton color="text">Button</EuiButton>
                         </EuiFlexItem>
                     </EuiFlexGroup>
-                </EuiPanel>
-            </EuiPageSection>
-        </EuiPageBody>
-        <Footer/>
+                </EuiFlexItem>
+            </EuiFlexGroup>
+        </EuiPageTemplate.BottomBar>
     </EuiPageTemplate>
   )
 }

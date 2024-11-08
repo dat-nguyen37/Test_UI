@@ -173,6 +173,7 @@ export default function Student() {
                     ))}
                 </EuiFlexGrid>
             </EuiPageTemplate.Section>
+            <EuiSpacer/>
             <EuiPageTemplate.BottomBar paddingSize='s' color='#343741'>
                 <EuiFlexGroup justifyContent='spaceBetween' alignItems='center'>
                     <EuiText color='#FFFFFF'>School Connected M- Hệ thống quản lý trường học</EuiText>
