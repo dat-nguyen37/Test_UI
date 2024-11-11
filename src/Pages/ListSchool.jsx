@@ -1,6 +1,8 @@
-import { EuiBasicTable, EuiButton, EuiButtonIcon, EuiFieldSearch, EuiFlexGroup, EuiFlexItem, EuiFormControlLayout, EuiFormRow, EuiIcon, EuiLink, EuiPageTemplate, EuiPopover, EuiSelect, EuiText } from '@elastic/eui'
+import { EuiBasicTable, EuiButton, EuiButtonIcon, EuiFieldSearch,EuiCollapsibleNavGroup,EuiListGroup,EuiListGroupItem, EuiFlexGroup, EuiFlexItem, EuiFormControlLayout, EuiFormRow, EuiIcon, EuiLink, EuiPageTemplate, EuiPopover, EuiSelect, EuiText } from '@elastic/eui'
 import React, { useState } from 'react'
 import Headers from '../component/Headers'
+import Footer from '../component/Footer'
+import SideBar from '../component/SideBar'
 
 export default function ListSchool() {
 
@@ -83,8 +85,48 @@ export default function ListSchool() {
     }
   return (
     <>
-        <Headers/>
-        <EuiPageTemplate style={{background:'white'}}>
+    <EuiPageTemplate>
+        {/* <EuiPageTemplate.Sidebar minWidth='220px' paddingSize='s'>
+        <EuiFlexGroup alignItems='center' gutterSize='m' responsive={false} style={{padding:'4px 8px'}}>
+            <EuiFlexItem grow={false} style={{padding:'5px',border:'1px sold gray',borderRadius:'50%',boxShadow:'1px 1px 4px rgba(0, 0, 0, 0.7)'}}>
+                <EuiIcon type="gear"/>
+            </EuiFlexItem>
+            <EuiText><strong>SCM</strong></EuiText>
+        </EuiFlexGroup>
+        <EuiCollapsibleNavGroup 
+            isCollapsible 
+            initialIsOpen={true} 
+            title={<EuiText style={{fontWeight:'bold'}}>Quản lý tài khoản</EuiText>} 
+            style={{borderBlockStart:'none'}}>
+            <EuiListGroup flush gutterSize='none'>
+                <EuiListGroupItem label='Danh sách tài khoản' style={{paddingBlock:'none'}}/>
+                <EuiListGroupItem label='Thêm mới tài khoản' style={{}}/>
+            </EuiListGroup>
+        </EuiCollapsibleNavGroup>
+            <EuiListGroup gutterSize='none' style={{padding:'4px 8px'}}>
+                <EuiListGroupItem label="Quản lý trường học" style={{fontWeight:'bold'}}/>
+                <EuiListGroupItem label='Quản lý lớp học'/>
+            </EuiListGroup>
+            <EuiListGroup gutterSize='none' style={{padding:'4px 8px'}}>
+                <EuiListGroupItem label='Sự kiện & HĐNK' style={{fontWeight:'bold'}}/>
+                <EuiListGroupItem label='Tạo mới sự kiện & HĐNK'/>
+            </EuiListGroup>
+            <EuiListGroup gutterSize='none' style={{padding:'4px 8px'}}>
+                <EuiListGroupItem label='Quản lý giảng dạy' style={{fontWeight:'bold'}}/>
+                <EuiListGroupItem label='Sổ đầu bài'/>
+                <EuiListGroupItem label='Thời khóa biểu'/>
+            </EuiListGroup>
+            <EuiListGroup gutterSize='none' style={{padding:'4px 8px'}}>
+                <EuiListGroupItem label='Quản lý tài chính' style={{fontWeight:'bold'}}/>
+                <EuiListGroupItem label='Tiền'/>
+                <EuiListGroupItem label='Tiền'/>
+            </EuiListGroup>
+            <EuiListGroup gutterSize='none' style={{padding:'4px 8px'}}>
+                <EuiListGroupItem label='Cơ sở vật chất' style={{fontWeight:'bold'}}/>
+                <EuiListGroupItem label='Bảo mật'/>
+                <EuiListGroupItem label='Thiết bị'/>
+            </EuiListGroup>
+        </EuiPageTemplate.Sidebar> */}
             <EuiPageTemplate.Header
             paddingSize='m'
             pageTitle={
@@ -158,17 +200,7 @@ export default function ListSchool() {
                 pagination={pagination}
                 onChange={onChangeTable}/>
             </EuiPageTemplate.Section>
-            <EuiPageTemplate.BottomBar paddingSize='s'>
-                <EuiFlexGroup justifyContent='spaceBetween' alignItems='center'>
-                    <EuiFlexItem grow={false}>
-                        <EuiText size='xs'>School Connected M- Hệ thống quản lý trường học</EuiText>
-                    </EuiFlexItem>
-                    <EuiFlexItem grow={false}>
-                        <EuiLink><EuiText size='xs'>info@ecotel.com.vn</EuiText></EuiLink>
-                    </EuiFlexItem>
-                </EuiFlexGroup>
-            </EuiPageTemplate.BottomBar>
-        </EuiPageTemplate>
+    </EuiPageTemplate>
     </>
   )
 }

@@ -1,12 +1,13 @@
-import { EuiFlexGroup, EuiLink, EuiPageSection, EuiText } from '@elastic/eui'
+import { EuiFlexGroup, EuiLink, EuiPageTemplate, EuiText } from '@elastic/eui'
 import React from 'react'
 
 export default function Footer() {
   return (
-    <EuiPageSection paddingSize='none' style={{background:'#FFFFFF',marginTop:'10px'}}>
-        <EuiFlexGroup justifyContent='flexEnd' style={{padding:'10px 40px'}}>
-            <EuiLink href='mailto:info@ecotel.com.vn'>info@ecotel.com.vn</EuiLink>
-        </EuiFlexGroup>
-    </EuiPageSection>
+    <EuiPageTemplate.BottomBar paddingSize='m'>
+    <EuiFlexGroup alignItems='center' justifyContent='spaceBetween'>
+        <EuiText size='xs'>School Connected M- Hệ thống quản lý trường học</EuiText>
+        <EuiLink><EuiText size='xs'>info@ecotel.com.vn</EuiText></EuiLink>
+    </EuiFlexGroup>
+</EuiPageTemplate.BottomBar>
   )
 }

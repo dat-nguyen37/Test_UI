@@ -34,97 +34,6 @@ export default function RecordStudy() {
       const simpleAccordionId = useGeneratedHtmlId({ prefix: 'simpleAccordion' });
   return (
     <>
-        <EuiPageHeader>
-            <EuiPageHeaderContent>
-                <EuiHeader style={{width:'100%'}}>
-                    <EuiHeaderSection>
-                        <EuiHeaderSectionItem>
-                            <EuiButtonEmpty onClick={toggleNav} iconType="menu" color='text'/>
-                            <EuiImage src="/assets/logo.png" width="100px" height="25px"/>
-                        </EuiHeaderSectionItem>
-                        <EuiHeaderSectionItem style={{padding:'10px'}}>
-                            <EuiAvatar name='S' type='space' size='s' color="#68C4A2"/>
-                        </EuiHeaderSectionItem>
-                        <EuiHeaderBreadcrumbs
-                            max={2}
-                            breadcrumbs={[
-                                {text:"Analytics",href:"#"},
-                                {text:"Analytics",href:"#"},
-                                {text:"Analytics",href:"#"},
-                                {text:"Analytics",href:"#"},
-                                {text:"Analytics",href:"#"},
-                                {text:"Hồ sơ học sinh"},
-                            ]}/>
-                    </EuiHeaderSection>
-                    <EuiHeaderSection side="right">
-                        <EuiFlexGroup gutterSize='xs'>
-                            <EuiHeaderSectionItem>
-                                <EuiHeaderSectionItemButton notification={'2'}>
-                                    <EuiIcon type="bell" size='m'/>
-                                </EuiHeaderSectionItemButton>
-                            </EuiHeaderSectionItem>
-                            <EuiHeaderSectionItem>
-                                <EuiHeaderSectionItemButton notification={'2'}>
-                                    <EuiIcon type="email" size='m'/>
-                                </EuiHeaderSectionItemButton>
-                            </EuiHeaderSectionItem>
-                            <EuiHeaderSectionItem>
-                                <EuiHeaderSectionItemButton>
-                                    <EuiAvatar name='EL' color="#68C4A2" size='s'/>
-                                </EuiHeaderSectionItemButton>
-                            </EuiHeaderSectionItem>
-                            <EuiHeaderSectionItem>
-                                <EuiIcon type="apps" size='m'/>
-                            </EuiHeaderSectionItem>
-                        </EuiFlexGroup>
-                    </EuiHeaderSection>
-                </EuiHeader>
-            </EuiPageHeaderContent>
-        </EuiPageHeader>
-    <EuiPageTemplate style={{background:'white'}}>
-    {isNavOpen && 
-            <EuiPageSidebar minWidth='220px' paddingSize='s'>
-                <EuiFlexGroup alignItems='center' gutterSize='m' responsive={false} style={{padding:'4px 8px'}}>
-                    <EuiFlexItem grow={false} style={{padding:'5px',border:'1px sold gray',borderRadius:'50%',boxShadow:'1px 1px 4px rgba(0, 0, 0, 0.7)'}}>
-                        <EuiIcon type="gear"/>
-                    </EuiFlexItem>
-                    <EuiText><strong>SCM</strong></EuiText>
-                </EuiFlexGroup>
-                <EuiCollapsibleNavGroup 
-                    isCollapsible 
-                    initialIsOpen={true} 
-                    title={<EuiText style={{fontWeight:'bold'}}>Quản lý tài khoản</EuiText>} 
-                    style={{borderBlockStart:'none'}}>
-                    <EuiListGroup flush gutterSize='none'>
-                        <EuiListGroupItem label='Danh sách tài khoản' style={{paddingBlock:'none'}}/>
-                        <EuiListGroupItem label='Thêm mới tài khoản' style={{}}/>
-                    </EuiListGroup>
-                </EuiCollapsibleNavGroup>
-                    <EuiListGroup gutterSize='none' style={{padding:'4px 8px'}}>
-                        <EuiListGroupItem label="Quản lý trường học" style={{fontWeight:'bold'}}/>
-                        <EuiListGroupItem label='Quản lý lớp học'/>
-                    </EuiListGroup>
-                    <EuiListGroup gutterSize='none' style={{padding:'4px 8px'}}>
-                        <EuiListGroupItem label='Sự kiện & HĐNK' style={{fontWeight:'bold'}}/>
-                        <EuiListGroupItem label='Tạo mới sự kiện & HĐNK'/>
-                    </EuiListGroup>
-                    <EuiListGroup gutterSize='none' style={{padding:'4px 8px'}}>
-                        <EuiListGroupItem label='Quản lý giảng dạy' style={{fontWeight:'bold'}}/>
-                        <EuiListGroupItem label='Sổ đầu bài'/>
-                        <EuiListGroupItem label='Thời khóa biểu'/>
-                    </EuiListGroup>
-                    <EuiListGroup gutterSize='none' style={{padding:'4px 8px'}}>
-                        <EuiListGroupItem label='Quản lý tài chính' style={{fontWeight:'bold'}}/>
-                        <EuiListGroupItem label='Tiền'/>
-                        <EuiListGroupItem label='Tiền'/>
-                    </EuiListGroup>
-                    <EuiListGroup gutterSize='none' style={{padding:'4px 8px'}}>
-                        <EuiListGroupItem label='Cơ sở vật chất' style={{fontWeight:'bold'}}/>
-                        <EuiListGroupItem label='Bảo mật'/>
-                        <EuiListGroupItem label='Thiết bị'/>
-                    </EuiListGroup>
-            </EuiPageSidebar>
-            }
         <EuiPageTemplate.Header
             pageTitle={
             <EuiFlexGroup alignItems='center' gutterSize='m'>
@@ -289,14 +198,7 @@ export default function RecordStudy() {
                 </EuiPanel>
             </EuiFlexGroup>
         </EuiPageSection>
-        <EuiPageSection style={{background:'#343741'}}>
-            <EuiFlexGroup justifyContent='spaceBetween' alignItems='center'>
-                <EuiText color='#FFFFFF'>School Connected M- Hệ thống quản lý trường học</EuiText>
-                <EuiLink href='Mailto:info@ecotel.com'><EuiText color='#FFFFFF'>info@ecotel.com</EuiText></EuiLink>
-            </EuiFlexGroup>
-        </EuiPageSection>
         {modal}
-    </EuiPageTemplate>
     </>
   )
 }
