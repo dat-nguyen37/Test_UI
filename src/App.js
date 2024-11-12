@@ -14,6 +14,7 @@ import ListRoom from "./Pages/ListRoom";
 import Headers from "./component/Headers";
 import Home from "./Pages/Home";
 import ClassDetail from "./Pages/ClassDetail";
+import ListEventTeacher from "./Pages/ListEventTeacher";
 function App() {
 
   return (
@@ -26,7 +27,8 @@ function App() {
         <Route path="/register" element={<Register/>}/>
         <Route path="/ForgetAccount" element={<ForgetAccount/>}/>
         <Route element={<Home/>}>
-          <Route path="/" element={<ClassDetail/>}/>
+          <Route path="/" element={<ListEventTeacher/>}/>
+          <Route path="/classDetail" element={<ClassDetail/>}/>
           <Route path="/listRoom" element={<ListRoom/>}/>
           <Route path="/profile" element={<Profile/>}/>
           <Route path="/SchoolManagement" element={<SchoolManagement/>}/>
