@@ -13,6 +13,7 @@ import ListSchool from "./Pages/ListSchool";
 import ListRoom from "./Pages/ListRoom";
 import Headers from "./component/Headers";
 import Home from "./Pages/Home";
+import ClassDetail from "./Pages/ClassDetail";
 function App() {
 
   return (
@@ -25,7 +26,8 @@ function App() {
         <Route path="/register" element={<Register/>}/>
         <Route path="/ForgetAccount" element={<ForgetAccount/>}/>
         <Route element={<Home/>}>
-          <Route path="/" element={<ListRoom/>}/>
+          <Route path="/" element={<ClassDetail/>}/>
+          <Route path="/listRoom" element={<ListRoom/>}/>
           <Route path="/profile" element={<Profile/>}/>
           <Route path="/SchoolManagement" element={<SchoolManagement/>}/>
           <Route path="/studyRecord" element={<StudyRecord/>}/>
