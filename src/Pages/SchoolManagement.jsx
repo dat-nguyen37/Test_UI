@@ -67,7 +67,7 @@ const items=[
     };
     const itemOfPage = items.slice(activePage * pageSize, (activePage + 1) * pageSize);
   return (
-    <EuiPageTemplate>
+    <EuiPageTemplate gu>
         <Headers/>
         <EuiPageBody>
           <EuiPageSection style={{marginBlock:'-10px'}}>
