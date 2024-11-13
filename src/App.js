@@ -16,6 +16,7 @@ import Home from "./Pages/Home";
 import ClassDetail from "./Pages/ClassDetail";
 import ListEventTeacher from "./Pages/ListEventTeacher";
 import EventDetail from "./Pages/EventDetail";
+import SchoolAdmin from "./Pages/SchoolAdmin";
 function App() {
 
   return (
@@ -28,7 +29,8 @@ function App() {
         <Route path="/register" element={<Register/>}/>
         <Route path="/ForgetAccount" element={<ForgetAccount/>}/>
         <Route element={<Home/>}>
-          <Route path="/" element={<EventDetail/>}/>
+          <Route path="/" element={<SchoolAdmin/>}/>
+          <Route path="/eventDetail" element={<EventDetail/>}/>
           <Route path="/listEventTeacher" element={<ListEventTeacher/>}/>
           <Route path="/classDetail" element={<ClassDetail/>}/>
           <Route path="/listRoom" element={<ListRoom/>}/>
