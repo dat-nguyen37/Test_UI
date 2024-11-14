@@ -17,6 +17,7 @@ import ClassDetail from "./Pages/ClassDetail";
 import ListEventTeacher from "./Pages/ListEventTeacher";
 import EventDetail from "./Pages/EventDetail";
 import SchoolAdmin from "./Pages/SchoolAdmin";
+import ManageStudentrecord from "./Pages/ManageStudentrecord";
 function App() {
 
   return (
@@ -29,7 +30,8 @@ function App() {
         <Route path="/register" element={<Register/>}/>
         <Route path="/ForgetAccount" element={<ForgetAccount/>}/>
         <Route element={<Home/>}>
-          <Route path="/" element={<SchoolAdmin/>}/>
+          <Route path="/" element={<ManageStudentrecord/>}/>
+          <Route path="/schoolAdmin" element={<SchoolAdmin/>}/>
           <Route path="/eventDetail" element={<EventDetail/>}/>
           <Route path="/listEventTeacher" element={<ListEventTeacher/>}/>
           <Route path="/classDetail" element={<ClassDetail/>}/>

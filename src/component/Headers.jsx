@@ -219,7 +219,7 @@ export default function Headers({clickSideBar}) {
                                             <EuiIcon type="canvasApp" size="l" />
                                         </EuiKeyPadMenuItem>
 
-                                        <EuiKeyPadMenuItem isSelected label="Lens">
+                                        <EuiKeyPadMenuItem label="Lens">
                                             <EuiIcon type="lensApp" size="l" />
                                         </EuiKeyPadMenuItem>
 

@@ -10,7 +10,7 @@ export default function Home() {
   const clickSideBar=()=>setOpenSideBar(!openSideBar)
   return (
     <>
-    <EuiPageTemplate >
+    <EuiPageTemplate>
       <Headers clickSideBar={clickSideBar}/>
         {openSideBar&&
         <EuiPageTemplate.Sidebar minWidth='220px' paddingSize='s'>
