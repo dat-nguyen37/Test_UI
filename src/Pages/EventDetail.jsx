@@ -152,7 +152,7 @@ export default function EventDetail() {
                     </EuiFlexItem>
                     <EuiFlexItem>
                         <EuiFormRow label="Ngày - giờ diễn ra" fullWidth>
-                            <EuiDatePicker 
+                            <EuiDatePicker
                             showTimeSelect
                             selected={startDate}
                             onChange={(date)=>setStartDate(date)}/>

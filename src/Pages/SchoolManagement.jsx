@@ -67,8 +67,7 @@ const items=[
     };
     const itemOfPage = items.slice(activePage * pageSize, (activePage + 1) * pageSize);
   return (
-    <EuiPageTemplate gu>
-        <Headers/>
+    <EuiPageTemplate>
         <EuiPageBody>
           <EuiPageSection style={{marginBlock:'-10px'}}>
             <EuiFlexGroup alignItems='center' gutterSize='m' responsive={false}>
@@ -256,7 +255,6 @@ const items=[
                     </EuiFlexGroup>
           </EuiPageSection>
         </EuiPageBody>
-        <Footer/>
     </EuiPageTemplate>
   )
 }
