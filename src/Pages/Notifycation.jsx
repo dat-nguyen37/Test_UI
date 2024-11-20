@@ -148,22 +148,22 @@ export default function Notifycation({setLanguage }) {
               </EuiFlexItem>
             </EuiFlexGroup>
             <EuiFlexGroup alignItems='center'>
-              <EuiFlexItem>
+              <EuiFlexItem grow={1}>
                 <EuiFormRow label="Ngày-giờ diễn ra">
                   <EuiDatePicker showTimeSelect selected={startDate} onChange={(date)=>setStartDate(date)}/>
                 </EuiFormRow>
               </EuiFlexItem>
               <EuiFlexItem>
-                <EuiFormRow label="Người nhận thông báo" fullWidth>
                   <EuiPopover
+                  panelStyle={{ display: 'block'}}
                   hasArrow={false}
                   isOpen={true}
                   button={
-                    <div style={{ width: '100%' }}>
-                    <EuiFormControlLayout clear={()=>{}} isDropdown>
-                      <EuiFieldText fullWidth/>
+                      <EuiFormRow label="Người nhận thông báo" fullWidth>
+                    <EuiFormControlLayout clear={()=>{}} isDropdown fullWidth>
+                    <EuiFieldText fullWidth placeholder="Người nhận thông báo"/>
                     </EuiFormControlLayout>
-                    </div>
+                  </EuiFormRow>
                   }>
                     <EuiSelectable
                     options={options}
@@ -180,8 +180,7 @@ export default function Notifycation({setLanguage }) {
                       )}
                       </EuiSelectable>
                   </EuiPopover>
-                </EuiFormRow>
-              </EuiFlexItem>
+                  </EuiFlexItem>
             </EuiFlexGroup>
             <EuiFlexGroup alignItems='center'>
               <EuiFlexItem>

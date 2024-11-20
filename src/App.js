@@ -19,6 +19,7 @@ import EventDetail from "./Pages/EventDetail";
 import SchoolAdmin from "./Pages/SchoolAdmin";
 import ManageStudentrecord from "./Pages/ManageStudentrecord";
 import Notifycation from "./Pages/Notifycation";
+import TimeTable from "./Pages/TimeTable";
 function App({ language, setLanguage }) {
 
   return (
@@ -31,7 +32,8 @@ function App({ language, setLanguage }) {
         <Route path="/register" element={<Register/>}/>
         <Route path="/ForgetAccount" element={<ForgetAccount/>}/>
         <Route element={<Home/>}>
-          <Route path="/" element={<Notifycation language={language} setLanguage={setLanguage} />}/>
+          <Route path="/" element={<TimeTable/>}/>
+          <Route path="/notifycation" element={<Notifycation language={language} setLanguage={setLanguage} />}/>
           <Route path="/manageStudentrecord" element={<ManageStudentrecord/>}/>
           <Route path="/schoolAdmin" element={<SchoolAdmin/>}/>
           <Route path="/eventDetail" element={<EventDetail/>}/>
